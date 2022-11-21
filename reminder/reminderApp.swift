@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct reminderApp: App {
-    let persistenceController = PersistenceController.shared
+    let persistenceController = PersistenceController.shared // is singleton class - one instance used across whole app
 
     var body: some Scene {
         WindowGroup {

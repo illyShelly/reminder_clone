@@ -11,8 +11,9 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor()], animation: .default)
+    @FetchRequest(entity: Listing.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
+                  animation: .default)
     
     private var allLists: FetchedResults<Listing>
 
@@ -20,27 +21,26 @@ struct ContentView: View {
         NavigationView {
             
             List {
-                ForEach(allLists) { list in
+                // In preview iterate with index -> need 'id' to show increased number in view 
+                ForEach(allLists, id: \.self) { list in
                     
                     NavigationLink {
                         // When clicked on link -> the other screen content
-                        Text("List at....")
+                        Text(list.name ?? "Unknown")
                     } label: {
                         Text(list.name!)
                     }
                 }
                 .onDelete(perform: deleteItems)
             }
-//            .toolbar {
-//                ToolbarItem {
-//                    Button(action: addList) {
-//                        Label("Add List", systemImage: "plus")
-//                    }
-//                }
-//            }
-            
-            Text("Select an List")
-            
+            .toolbar {
+                ToolbarItem {
+                    Button(action: addList) {
+                        Label("Add List", systemImage: "plus")
+                    }
+                }
+            }
+            .navigationTitle("Lists")
         }
     }
 
@@ -49,6 +49,9 @@ struct ContentView: View {
             let newList = Listing(context: viewContext)
             newList.name = "Hi"
 
+            
+            
+            
             do {
                 try viewContext.save()
             }
@@ -66,7 +69,7 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-             
+
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }

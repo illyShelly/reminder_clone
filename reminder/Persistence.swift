@@ -6,37 +6,66 @@
 //
 
 import CoreData
+import UIKit
 
 struct PersistenceController {
-    static let shared = PersistenceController()
-
+    static let shared = PersistenceController() // the singleton
+    
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
-        
         let viewContext = result.container.viewContext
         
-        // As default display 4 list on main screen
-        for _ in 0..<4 {
+        for idx in 0 ..< 4 {
             let newList = Listing(context: viewContext)
-            newList.name = "Hello"
-        }
+                newList.name = "Hello \(idx)"
+                
+//                if let img = UIImage(named: "square.and.pencil") {
+//                        let data = img.pngData() as NSData?
+//                    newList.icon = data as Data?
+//                }
+
+           }
+        
         do {
             try viewContext.save()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+            
         return result
     }()
+//    static var preview: PersistenceController = {
+//        let result = PersistenceController(inMemory: true)
+//        
+//        let viewContext = result.container.viewContext
+//        
+//        // As default hard-coded 4 lines of lists in the preview
+//        for _ in 0..<4 {
+//            let newList = Listing(context: viewContext)
+//            newList.name = "Hello"
+//        }
+//        do {
+//            try viewContext.save()
+//        } catch {
+//            let nsError = error as NSError
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//        }
+//        return result
+//    }()
 
-    let container: NSPersistentContainer
+    let container: NSPersistentContainer // is connected to the file reminder.xcdatamodeld
 
     init(inMemory: Bool = false) {
+        
+//      initializing a persistence controller
         container = NSPersistentContainer(name: "reminder")
         
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
+//      the primary function is to 'load data from the container'
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
