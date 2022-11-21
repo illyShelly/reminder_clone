@@ -10,13 +10,16 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(entity: Listing.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
                   animation: .default)
     
     private var allLists: FetchedResults<Listing>
 
+    @State private var showingList = false
+
+    
     var body: some View {
         NavigationView {
             
@@ -35,31 +38,41 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem {
-                    Button(action: addList) {
-                        Label("Add List", systemImage: "plus")
-                    }
-                }
+                    Button(action: {
+                        showingList.toggle()
+                    }, label: {
+                        Text("Add List")
+                    })
+                    .sheet(isPresented: $showingList,
+                           content: {
+                        ListView()
+                    })
+                    
+                } // end of ToolbarItem
             }
             .navigationTitle("Lists")
         }
     }
 
     private func addList() {
-        withAnimation {
-            let newList = Listing(context: viewContext)
-            newList.name = "Hi"
-
+        
+//        withAnimation {
             
-            
-            
-            do {
-                try viewContext.save()
-            }
-            catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+            // Hardcoded
+//            let newList = Listing(context: viewContext)
+//            newList.name = "Hi"
+//
+//
+//
+//
+//            do {
+//                try viewContext.save()
+//            }
+//            catch {
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
     }
 
     private func deleteItems(offsets: IndexSet) {

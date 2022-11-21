@@ -13,6 +13,7 @@
 		374B35022927EBBA0013A29D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 374B35012927EBBA0013A29D /* Preview Assets.xcassets */; };
 		374B35042927EBBA0013A29D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374B35032927EBBA0013A29D /* Persistence.swift */; };
 		374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 374B35052927EBBA0013A29D /* reminder.xcdatamodeld */; };
+		37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFDB55292BE02E006E5CDF /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		374B35012927EBBA0013A29D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		374B35032927EBBA0013A29D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		374B35062927EBBA0013A29D /* reminder.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = reminder.xcdatamodel; sourceTree = "<group>"; };
+		37BFDB55292BE02E006E5CDF /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +57,8 @@
 		374B34F92927EBB90013A29D /* reminder */ = {
 			isa = PBXGroup;
 			children = (
+				37BFDB50292BDF9F006E5CDF /* Views */,
 				374B34FA2927EBB90013A29D /* reminderApp.swift */,
-				374B34FC2927EBB90013A29D /* ContentView.swift */,
 				374B35032927EBBA0013A29D /* Persistence.swift */,
 				374B35052927EBBA0013A29D /* reminder.xcdatamodeld */,
 				374B34FE2927EBBA0013A29D /* Assets.xcassets */,
@@ -71,6 +73,15 @@
 				374B35012927EBBA0013A29D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		37BFDB50292BDF9F006E5CDF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				374B34FC2927EBB90013A29D /* ContentView.swift */,
+				37BFDB55292BE02E006E5CDF /* ListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +156,7 @@
 			files = (
 				374B35042927EBBA0013A29D /* Persistence.swift in Sources */,
 				374B34FD2927EBB90013A29D /* ContentView.swift in Sources */,
+				37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */,
 				374B34FB2927EBB90013A29D /* reminderApp.swift in Sources */,
 				374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */,
 			);
