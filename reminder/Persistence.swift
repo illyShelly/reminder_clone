@@ -15,11 +15,12 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
+//        // As default hard-coded 4 lines of lists in the preview
         for idx in 1 ..< 4 {
             let newList = Listing(context: viewContext)
                 newList.name = "Hello \(idx)"
            }
-        
+
         do {
             try viewContext.save()
         } catch {
@@ -29,24 +30,6 @@ struct PersistenceController {
             
         return result
     }()
-//    static var preview: PersistenceController = {
-//        let result = PersistenceController(inMemory: true)
-//        
-//        let viewContext = result.container.viewContext
-//        
-//        // As default hard-coded 4 lines of lists in the preview
-//        for _ in 0..<4 {
-//            let newList = Listing(context: viewContext)
-//            newList.name = "Hello"
-//        }
-//        do {
-//            try viewContext.save()
-//        } catch {
-//            let nsError = error as NSError
-//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//        }
-//        return result
-//    }()
 
     let container: NSPersistentContainer // is connected to the file reminder.xcdatamodeld
 

@@ -9,17 +9,16 @@ import SwiftUI
 
 struct ListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @State private var nameOfList: String = ""
-    @FocusState private var nameIsFocused: Bool
     @Environment(\.dismiss) var dismiss
+
+    @FocusState private var nameIsFocused: Bool
     
     @State var closedList = false
+    @State private var nameOfList: String = ""
+    @State var selectedColor: Color = .blue
     
     var iconOfList: String = "list.bullet.circle"
-    
     let colors: [Color] = [.red, .orange, .yellow, .green, .mint, .cyan, .blue, .indigo, .purple, .pink, .brown, .gray]
-    @State var selectedColor: Color = .black
     
     var body: some View {
         NavigationView {
@@ -29,7 +28,7 @@ struct ListView: View {
                 Section {
                     // Image icon
                     VStack {
-                        Image(systemName: "list.bullet.circle")
+                        Image(systemName: "list.bullet.circle.fill")
                             .resizable()
     //                            .foregroundColor(selectedColor)
                             .fontWeight(.light)
@@ -85,29 +84,6 @@ struct ListView: View {
                 }.frame(height: 150)
                     .font(.title)
                 
-//                Section {
-//
-//                    HStack {
-//                        ForEach(colors, id: \.self) { color in
-//
-//                                Button(action: {
-//                                    print("clicked \(color)")
-//                                    selectedColor = color
-//
-//                                }, label: {
-//                                    Label("", systemImage: "circle.fill")
-//                                        .foregroundColor(color)
-//                                        .font(.title)
-//                                })
-//                                .padding(.horizontal, 2)
-//                        }
-//                    }
-//
-//                    .frame(width: 300, height: 150)
-//                    .lineLimit(2)
-//                    .background(.gray)
-//                }
-                
                 // Push all code on top
                 Spacer()
             }
@@ -133,27 +109,36 @@ struct ListView: View {
                     .disabled(nameOfList == "" ? true : false)
                     
                     // Redirect to Contentview with .sheet with above closedList = true
-//                    .sheet(isPresented: $closedList) {
-//                        ContentView()
-//                    }
+                    .sheet(isPresented: $closedList,
+                           content: {
+                                ContentView()
+                    })
                 }
             }
+            .navigationTitle("New List")
+            .navigationBarTitleDisplayMode(.inline)
             
         } // end nav
+       
     }
+    
+//    func convertColor() -> String {
+//      return //
+//    }
     
     private func saveList() -> Void {
         let newList = Listing(context: viewContext)
             newList.name = nameOfList
+            newList.icon = iconOfList
                                 
         do {
             try viewContext.save()
-        } catch {
+        }
+        catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    
   
 }
 

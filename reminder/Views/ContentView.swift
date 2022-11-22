@@ -29,14 +29,22 @@ struct ContentView: View {
                     
                     NavigationLink {
                         // When clicked on link -> the other screen content
-                        Text(list.name ?? "Unknown")
+                        HStack {
+                            Text(list.name ?? "Unknown")
+
+                        }
                     } label: {
-                        Text(list.name!)
+                        // Visible on the main page
+                        HStack {
+                            Image(systemName: "\(list.icon!)")
+                            Text(list.name!)
+                        }
+                        
                     }
                 }
                 .onDelete(perform: deleteItems)
-            }
-            .toolbar {
+                
+            } .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingList.toggle()
@@ -48,6 +56,7 @@ struct ContentView: View {
                     .sheet(isPresented: $showingList,
                            content: {
                         ListView()
+//                        Text("sfs")
                     })
                 } // end of ToolbarItem
             }
@@ -55,26 +64,6 @@ struct ContentView: View {
         }
     }
 
-    private func addList() {
-        
-//        withAnimation {
-            
-            // Hardcoded
-//            let newList = Listing(context: viewContext)
-//            newList.name = "Hi"
-//
-//
-//
-//
-//            do {
-//                try viewContext.save()
-//            }
-//            catch {
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-    }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
@@ -83,7 +72,6 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -93,7 +81,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
 
