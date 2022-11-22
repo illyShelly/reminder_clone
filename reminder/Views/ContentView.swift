@@ -45,7 +45,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
                 
             } .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .bottomBar) {
                     Button(action: {
                         showingList.toggle()
                         print(showingList)
@@ -53,11 +53,13 @@ struct ContentView: View {
                     }, label: {
                         Text("Add List")
                     })
-                    .sheet(isPresented: $showingList,
+                    .sheet(isPresented: $showingList, // used to pass binding value
                            content: {
                         ListView()
                     })
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 } // end of ToolbarItem
+                
             }
             .navigationTitle("Lists")
         }

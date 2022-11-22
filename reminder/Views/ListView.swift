@@ -15,82 +15,56 @@ struct ListView: View {
     
     @State var closedList = false
     @State private var nameOfList: String = ""
-    @State var selectedColor: Color = .blue
     
+    @State var selectedColor: Color = .blue
     var iconOfList: String = "list.bullet.circle"
     
-    let colors: [Color] = [.red, .orange, .yellow, .green, .mint, .cyan, .blue, .indigo, .purple, .pink, .brown, .gray]
+//    let colors: [Color] = [.red, .orange, .yellow, .green, .mint, .cyan, .blue, .indigo, .purple, .pink, .brown, .gray]
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-               
-                }
-                // Inline Textfield for 'name' of list
-                Section {
+                // Display List's 'icon', 'name'
+
+                VStack {
                     // Image icon
                     VStack {
                         Image(systemName: "list.bullet.circle.fill")
                             .resizable()
-    //                            .foregroundColor(selectedColor)
-                            .fontWeight(.light)
                     }
-                    .frame(width: 70, height: 70)
-                    .padding(.bottom, 20)
+                        .frame(width: 70, height: 70)
+                        .padding(20)
                     
                     // Name of list
-                    TextField(text: $nameOfList,
-                              prompt: Text("List Name")) {
+                    TextField(text: $nameOfList, prompt: Text("List Name")) {
                         Text(nameOfList)
+//                            .fontWeight(.semibold)
                     }
-                        .focused($nameIsFocused)
-                        .disableAutocorrection(true)
-                        .textFieldStyle(.roundedBorder)
-                        .multilineTextAlignment(.center)
-                        .font(.title)
-    //                        .keyboardType(.default)
-                }
-                .foregroundColor(selectedColor)
-                .padding(.horizontal, 50)
-                .padding(.vertical, 10)
-                
-                // 'colours' of list
-                Grid(horizontalSpacing: 1, verticalSpacing: 20) {
-                    GridRow {
-                        ForEach(0..<colors.count/2) { idx in
-                            Button(action: {
-                                print("clicked \(colors[idx])")
-                                selectedColor = colors[idx]
-
-                            }, label: {
-                                Label("", systemImage: "circle.fill")
-                                    .foregroundColor(colors[idx])
-    //                                    .font(.title)
-                            })
-                        }
-                    }
-                    GridRow {
-                        ForEach(colors.count/2..<colors.count) { idx in
-                            Button(action: {
-                                print("clicked \(colors[idx])")
-                                selectedColor = colors[idx]
-
-                            }, label: {
-                                Label("", systemImage: "circle.fill")
-                                    .foregroundColor(colors[idx])
-    //                                    .font(.title)
-                            })
-                        }
-                    }
-                    
-                }.frame(height: 150)
+                    .focused($nameIsFocused)
+                    .disableAutocorrection(true)
+                    .textFieldStyle(.roundedBorder)
+                    .multilineTextAlignment(.center)
                     .font(.title)
+                    .fontWeight(.semibold)
+                    .padding(20)
+                    // .keyboardType(.default)
+                }
+                .background(.white)
+                .foregroundColor(selectedColor)
+                .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                
+                // Display 2 lines of 'Colours' of list
+                // pass the binded variable to ColorIconView
+                ColorIconView(selectedColor: $selectedColor)
                 
                 // Push all code on top
                 Spacer()
-            }
+            } // end of VS
             .padding(20)
+            .navigationTitle("New List")
+            .navigationBarTitleDisplayMode(.inline)
+            .background(Color(red: 0.949, green: 0.946, blue: 0.966))
+
             
 //            Toolbar on top - 'Cancel' & 'Done'
             .toolbar {
@@ -117,11 +91,10 @@ struct ListView: View {
                                 ContentView()
                     })
                 }
-            }
-            .navigationTitle("New List")
-            .navigationBarTitleDisplayMode(.inline)
+            } // end of toolbar
             
         } // end nav
+
        
     }
     

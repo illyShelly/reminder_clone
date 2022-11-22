@@ -14,7 +14,7 @@
 		374B35042927EBBA0013A29D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374B35032927EBBA0013A29D /* Persistence.swift */; };
 		374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 374B35052927EBBA0013A29D /* reminder.xcdatamodeld */; };
 		37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFDB55292BE02E006E5CDF /* ListView.swift */; };
-		37FA3FA7292D34D000CAF687 /* ColorConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FA3FA6292D34D000CAF687 /* ColorConvert.swift */; };
+		37FA3FA9292D660D00CAF687 /* ColorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FA3FA8292D660D00CAF687 /* ColorIconView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		374B35032927EBBA0013A29D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		374B35062927EBBA0013A29D /* reminder.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = reminder.xcdatamodel; sourceTree = "<group>"; };
 		37BFDB55292BE02E006E5CDF /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		37FA3FA6292D34D000CAF687 /* ColorConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvert.swift; sourceTree = "<group>"; };
+		37FA3FA8292D660D00CAF687 /* ColorIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorIconView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				374B34FA2927EBB90013A29D /* reminderApp.swift */,
-				37FA3FA5292D34BC00CAF687 /* Modals */,
+				37FA3FA5292D34BC00CAF687 /* Models */,
 				37BFDB50292BDF9F006E5CDF /* Views */,
 				374B35052927EBBA0013A29D /* reminder.xcdatamodeld */,
 				374B34FE2927EBBA0013A29D /* Assets.xcassets */,
@@ -82,17 +82,17 @@
 			children = (
 				374B34FC2927EBB90013A29D /* ContentView.swift */,
 				37BFDB55292BE02E006E5CDF /* ListView.swift */,
+				37FA3FA8292D660D00CAF687 /* ColorIconView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		37FA3FA5292D34BC00CAF687 /* Modals */ = {
+		37FA3FA5292D34BC00CAF687 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37FA3FA6292D34D000CAF687 /* ColorConvert.swift */,
 				374B35032927EBBA0013A29D /* Persistence.swift */,
 			);
-			path = Modals;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,9 +166,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				374B35042927EBBA0013A29D /* Persistence.swift in Sources */,
-				37FA3FA7292D34D000CAF687 /* ColorConvert.swift in Sources */,
 				374B34FD2927EBB90013A29D /* ContentView.swift in Sources */,
 				37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */,
+				37FA3FA9292D660D00CAF687 /* ColorIconView.swift in Sources */,
 				374B34FB2927EBB90013A29D /* reminderApp.swift in Sources */,
 				374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */,
 			);
