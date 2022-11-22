@@ -37,9 +37,11 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
             }
             .toolbar {
-                ToolbarItem {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showingList.toggle()
+                        print(showingList)
+                        
                     }, label: {
                         Text("Add List")
                     })
@@ -47,7 +49,6 @@ struct ContentView: View {
                            content: {
                         ListView()
                     })
-                    
                 } // end of ToolbarItem
             }
             .navigationTitle("Lists")

@@ -15,15 +15,9 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         
-        for idx in 0 ..< 4 {
+        for idx in 1 ..< 4 {
             let newList = Listing(context: viewContext)
                 newList.name = "Hello \(idx)"
-                
-//                if let img = UIImage(named: "square.and.pencil") {
-//                        let data = img.pngData() as NSData?
-//                    newList.icon = data as Data?
-//                }
-
            }
         
         do {
