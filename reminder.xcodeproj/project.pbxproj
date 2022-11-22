@@ -15,6 +15,7 @@
 		374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 374B35052927EBBA0013A29D /* reminder.xcdatamodeld */; };
 		37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFDB55292BE02E006E5CDF /* ListView.swift */; };
 		37FA3FA9292D660D00CAF687 /* ColorIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FA3FA8292D660D00CAF687 /* ColorIconView.swift */; };
+		37FA3FAB292D69F300CAF687 /* ColorConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FA3FAA292D69F300CAF687 /* ColorConvertion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		374B35062927EBBA0013A29D /* reminder.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = reminder.xcdatamodel; sourceTree = "<group>"; };
 		37BFDB55292BE02E006E5CDF /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		37FA3FA8292D660D00CAF687 /* ColorIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorIconView.swift; sourceTree = "<group>"; };
+		37FA3FAA292D69F300CAF687 /* ColorConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvertion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				374B35032927EBBA0013A29D /* Persistence.swift */,
+				37FA3FAA292D69F300CAF687 /* ColorConvertion.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */,
 				37FA3FA9292D660D00CAF687 /* ColorIconView.swift in Sources */,
 				374B34FB2927EBB90013A29D /* reminderApp.swift in Sources */,
+				37FA3FAB292D69F300CAF687 /* ColorConvertion.swift in Sources */,
 				374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
