@@ -14,6 +14,7 @@
 		374B35042927EBBA0013A29D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374B35032927EBBA0013A29D /* Persistence.swift */; };
 		374B35072927EBBA0013A29D /* reminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 374B35052927EBBA0013A29D /* reminder.xcdatamodeld */; };
 		37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BFDB55292BE02E006E5CDF /* ListView.swift */; };
+		37FA3FA7292D34D000CAF687 /* ColorConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FA3FA6292D34D000CAF687 /* ColorConvert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		374B35032927EBBA0013A29D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		374B35062927EBBA0013A29D /* reminder.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = reminder.xcdatamodel; sourceTree = "<group>"; };
 		37BFDB55292BE02E006E5CDF /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		37FA3FA6292D34D000CAF687 /* ColorConvert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConvert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,8 @@
 			isa = PBXGroup;
 			children = (
 				374B34FA2927EBB90013A29D /* reminderApp.swift */,
+				37FA3FA5292D34BC00CAF687 /* Modals */,
 				37BFDB50292BDF9F006E5CDF /* Views */,
-				374B35032927EBBA0013A29D /* Persistence.swift */,
 				374B35052927EBBA0013A29D /* reminder.xcdatamodeld */,
 				374B34FE2927EBBA0013A29D /* Assets.xcassets */,
 				374B35002927EBBA0013A29D /* Preview Content */,
@@ -82,6 +84,15 @@
 				37BFDB55292BE02E006E5CDF /* ListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		37FA3FA5292D34BC00CAF687 /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				37FA3FA6292D34D000CAF687 /* ColorConvert.swift */,
+				374B35032927EBBA0013A29D /* Persistence.swift */,
+			);
+			path = Modals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				374B35042927EBBA0013A29D /* Persistence.swift in Sources */,
+				37FA3FA7292D34D000CAF687 /* ColorConvert.swift in Sources */,
 				374B34FD2927EBB90013A29D /* ContentView.swift in Sources */,
 				37BFDB56292BE02E006E5CDF /* ListView.swift in Sources */,
 				374B34FB2927EBB90013A29D /* reminderApp.swift in Sources */,

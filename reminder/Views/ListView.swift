@@ -18,12 +18,15 @@ struct ListView: View {
     @State var selectedColor: Color = .blue
     
     var iconOfList: String = "list.bullet.circle"
+    
     let colors: [Color] = [.red, .orange, .yellow, .green, .mint, .cyan, .blue, .indigo, .purple, .pink, .brown, .gray]
     
     var body: some View {
         NavigationView {
             VStack {
-
+                HStack {
+               
+                }
                 // Inline Textfield for 'name' of list
                 Section {
                     // Image icon

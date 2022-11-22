@@ -36,7 +36,7 @@ struct ContentView: View {
                     } label: {
                         // Visible on the main page
                         HStack {
-                            Image(systemName: "\(list.icon!)")
+                            Image(systemName: "list.bullet.circle")
                             Text(list.name!)
                         }
                         
@@ -56,7 +56,6 @@ struct ContentView: View {
                     .sheet(isPresented: $showingList,
                            content: {
                         ListView()
-//                        Text("sfs")
                     })
                 } // end of ToolbarItem
             }
