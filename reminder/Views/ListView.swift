@@ -59,9 +59,9 @@ struct ListView: View {
                 Spacer()
             } // end of VS
             .padding(20)
+            .background(Color(red: 0.949, green: 0.946, blue: 0.966))
             .navigationTitle("New List")
             .navigationBarTitleDisplayMode(.inline)
-            .background(Color(red: 0.949, green: 0.946, blue: 0.966))
 
             
 //            Toolbar on top - 'Cancel' & 'Done'
@@ -96,15 +96,13 @@ struct ListView: View {
        
     }
     
-//    func convertColor() -> String {
-//      return //
-//    }
-    
     private func saveList() -> Void {
         let newList = Listing(context: viewContext)
             newList.name = nameOfList
             newList.icon = iconOfList
-                                
+            newList.colorCode = selectedColor.hex
+        print(selectedColor.hex) // to add as default into ContentView
+                                    
         do {
             try viewContext.save()
         }

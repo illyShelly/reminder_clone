@@ -37,6 +37,7 @@ struct ContentView: View {
                         // Visible on the main page
                         HStack {
                             Image(systemName: "list.bullet.circle")
+                                .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
                             Text(list.name!)
                         }
                         

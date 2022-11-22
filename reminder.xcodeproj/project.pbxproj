@@ -65,6 +65,7 @@
 				37FA3FA5292D34BC00CAF687 /* Models */,
 				37BFDB50292BDF9F006E5CDF /* Views */,
 				374B35052927EBBA0013A29D /* reminder.xcdatamodeld */,
+				374B35032927EBBA0013A29D /* Persistence.swift */,
 				374B34FE2927EBBA0013A29D /* Assets.xcassets */,
 				374B35002927EBBA0013A29D /* Preview Content */,
 			);
@@ -92,7 +93,6 @@
 		37FA3FA5292D34BC00CAF687 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				374B35032927EBBA0013A29D /* Persistence.swift */,
 				37FA3FAA292D69F300CAF687 /* ColorConvertion.swift */,
 			);
 			path = Models;
