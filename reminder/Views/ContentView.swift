@@ -46,7 +46,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
                 
             } .toolbar {
-                ToolbarItem(placement: .bottomBar) {
+                ToolbarItem(placement: .navigationBarTrailing) { //.bottomBar
                     Button(action: {
                         showingList.toggle()
                         print(showingList)
@@ -58,7 +58,7 @@ struct ContentView: View {
                            content: {
                         ListView()
                     })
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+//                    .frame(maxWidth: .infinity, alignment: .trailing)
                 } // end of ToolbarItem
                 
             }
