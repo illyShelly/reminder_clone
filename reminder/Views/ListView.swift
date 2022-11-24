@@ -45,7 +45,7 @@ struct ListView: View {
                     .font(.title)
                     .fontWeight(.semibold)
                     .padding(20)
-                    // .keyboardType(.default)
+                    .keyboardType(.default)
                 }
                 .background(.white)
                 .foregroundColor(selectedColor)
