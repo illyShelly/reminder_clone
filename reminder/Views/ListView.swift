@@ -59,7 +59,7 @@ struct ListView: View {
                 Spacer()
             } // end of VS
             .padding(20)
-            .background(Color(red: 0.949, green: 0.946, blue: 0.966))
+            .background(Color.init(uiColor: .systemGray6))
             .navigationTitle("New List")
             .navigationBarTitleDisplayMode(.inline)
 

@@ -62,7 +62,7 @@ struct ContentView: View {
                 } // end of ToolbarItem
                 
             }
-            .navigationTitle("Lists")
+            .navigationTitle("My Lists")
         }
     }
 
