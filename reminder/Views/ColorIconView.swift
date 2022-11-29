@@ -46,7 +46,7 @@ struct ColorIconView: View {
         .frame(maxWidth: .infinity)
             .padding(10)
             .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+//            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
             .font(.title)
 
 

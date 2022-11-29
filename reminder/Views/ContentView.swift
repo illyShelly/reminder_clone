@@ -30,15 +30,22 @@ struct ContentView: View {
                     NavigationLink {
                         // When clicked on link -> the other screen content
                         HStack {
-                            Text(list.name ?? "Unknown")
-
+//                            Text(list.name ?? "Unknown")
+                            Text(list.wrappedName)
+                            
+                            ForEach(list.remindersArr, id: \.self) { reminder in
+                                Text(reminder.wrappedTitle)
+                            }
                         }
                     } label: {
                         // Visible on the main page
                         HStack {
                             Image(systemName: "list.bullet.circle")
-                                .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
-                            Text(list.name!)
+                            // .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
+                                .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
+//                            Text(list.name!)
+                            Text(list.wrappedName)
+                            
                         }
                         
                     }
