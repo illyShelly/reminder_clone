@@ -18,7 +18,7 @@ struct ContentView: View {
     private var allLists: FetchedResults<Listing>
 
     @State private var showingList = false
-
+    @State private var showingReminder = false
     
     var body: some View {
         NavigationView {
@@ -33,12 +33,15 @@ struct ContentView: View {
 //                            Text(list.name ?? "Unknown")
                             Text(list.wrappedName)
                             
+                            // Show all reminders related to current list
                             ForEach(list.remindersArr, id: \.self) { reminder in
-                                Text(reminder.wrappedTitle)
+                                List {
+                                    Text(reminder.wrappedTitle)
+                                }
                             }
                         }
                     } label: {
-                        // Visible on the main page
+                        // Visible on the main page - Icon & Name
                         HStack {
                             Image(systemName: "list.bullet.circle")
                             // .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
@@ -66,7 +69,20 @@ struct ContentView: View {
                         ListView()
                     })
 //                    .frame(maxWidth: .infinity, alignment: .trailing)
-                } // end of ToolbarItem
+                } // end of ToolbarItem - List
+                ToolbarItem(placement: .navigationBarLeading, content: {
+                    Button(action: {
+                        showingReminder.toggle()
+                        print(showingReminder)
+                    }, label: {
+                        Text("Add Reminder")
+                    })
+                    .sheet(isPresented: $showingReminder,
+                           content: {
+                        ReminderView()
+                    })
+                })
+                
                 
             }
             .navigationTitle("My Lists")

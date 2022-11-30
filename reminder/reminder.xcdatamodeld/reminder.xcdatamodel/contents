@@ -14,6 +14,7 @@
     </entity>
     <entity name="Reminder" representedClassName="Reminder" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Listing" inverseName="reminders" inverseEntity="Listing"/>
     </entity>

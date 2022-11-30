@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ReminderView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) var dismiss
     
     @FetchRequest(entity: Listing.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
@@ -17,15 +18,25 @@ struct ReminderView: View {
 
     
     var body: some View {
-        ForEach(allLists, id: \.self) { list in
-            
-            ForEach(list.remindersArr, id: \.self) { reminder in
-                Text(reminder.wrappedTitle)
+        NavigationView {
+            VStack {
+                Text("hi")
+                Spacer()
             }
+            .padding(10)
+            .background(Color.init(uiColor: .systemGray6))
+            .navigationTitle("New Reminder")
+            .navigationBarTitleDisplayMode(.inline) //small in the center
             
-        }
-        
-    }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel", action: {
+                        dismiss()
+                    })
+                }
+            }
+        } // end Nav - not visible toolbar otherwise
+    } // end view
 }
 
 struct ReminderView_Previews: PreviewProvider {

@@ -15,13 +15,17 @@ extension Reminder {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reminder> {
         return NSFetchRequest<Reminder>(entityName: "Reminder")
     }
-
+    
+    @NSManaged public var notes: String?
     @NSManaged public var title: String?
     @NSManaged public var id: UUID?
     @NSManaged public var origin: Listing?
     
     public var wrappedTitle: String {
         title ?? "Unknown Reminder"
+    }
+    public var wrappedNotes: String {
+        notes ?? "Unknown Notes"
     }
 }
 
