@@ -68,20 +68,26 @@ struct ContentView: View {
                            content: {
                         ListView()
                     })
-//                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 } // end of ToolbarItem - List
-                ToolbarItem(placement: .navigationBarLeading, content: {
+                
+                // Add Reminder Icon
+                ToolbarItem(placement: .bottomBar) {
                     Button(action: {
                         showingReminder.toggle()
                         print(showingReminder)
                     }, label: {
-                        Text("Add Reminder")
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("New Reminder")
+                        }
                     })
                     .sheet(isPresented: $showingReminder,
                            content: {
                         ReminderView()
                     })
-                })
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                } // end tool item
                 
                 
             }

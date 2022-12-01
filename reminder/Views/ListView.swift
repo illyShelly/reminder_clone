@@ -36,24 +36,29 @@ struct ListView: View {
                     // Name of list
                     TextField(text: $nameOfList, prompt: Text("List Name")) {
                         Text(nameOfList)
-//                            .fontWeight(.semibold)
                     }
+                    .frame(height: 50)
                     .focused($nameIsFocused)
                     .disableAutocorrection(true)
-                    .textFieldStyle(.roundedBorder)
+// .textFieldStyle(.roundedBorder) // makes another light layer - 'disable' .background modifier, makes it bigger
+                    .background(Color.init(uiColor: .systemGray4))
                     .multilineTextAlignment(.center)
-                    .font(.title)
+                    .cornerRadius(5.0)
+                    .font(.title2)
                     .fontWeight(.semibold)
-                    .padding(20)
+                    .padding(20) // move the list up and from edges
                     .keyboardType(.default)
                 }
+                // 1st big rectangle
                 .background(.white)
+                .cornerRadius(5.0)
                 .foregroundColor(selectedColor)
-                .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
                 
                 // Display 2 lines of 'Colours' of list
                 // pass the binded variable to ColorIconView
+                
                 ColorIconView(selectedColor: $selectedColor)
+                    .cornerRadius(5.0)
                 
                 // Push all code on top
                 Spacer()
@@ -124,3 +129,5 @@ struct ListView_Previews: PreviewProvider {
 // tell the view to dismiss itself using its presentation mode environment key. Any view can read its presentation mode using @Environment(\.presentationMode), and calling wrappedValue.dismiss() on that will cause the view to be dismissed.
             
 //https://www.hackingwithswift.com/books/ios-swiftui/showing-and-hiding-views
+
+//                .clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
