@@ -14,8 +14,7 @@ struct ContentView: View {
     @FetchRequest(entity: Listing.entity(),
                   sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
                   animation: .default)
-    
-    private var allLists: FetchedResults<Listing>
+        private var allLists: FetchedResults<Listing>
 
     @State private var showingList = false
     @State private var showingReminder = false
@@ -30,8 +29,14 @@ struct ContentView: View {
                     NavigationLink {
                         // When clicked on link -> the other screen content
                         HStack {
-//                            Text(list.name ?? "Unknown")
-                            Text(list.wrappedName)
+//                            Text(list.wrappedName) // Text(list.name ?? "Unknown")
+                            
+//                            print("\(allLists[0])") // cannot use
+                            
+                            let arrOfRemindersOffirstList = allLists[0].remindersArr
+                            let value = (arrOfRemindersOffirstList.first ?? Reminder(context: context)).title // need some default item
+                            Text(value ?? "default")
+                            
                             
                             // Show all reminders related to current list
                             ForEach(list.remindersArr, id: \.self) { reminder in
@@ -55,7 +60,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
                 
-            } .toolbar {
+            }.toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) { //.bottomBar
                     Button(action: {
                         showingList.toggle()
@@ -76,6 +81,7 @@ struct ContentView: View {
                     Button(action: {
                         showingReminder.toggle()
                         print(showingReminder)
+                        
                     }, label: {
                         HStack {
                             Image(systemName: "plus.circle.fill")
@@ -84,13 +90,14 @@ struct ContentView: View {
                     })
                     .sheet(isPresented: $showingReminder,
                            content: {
-                        ReminderView()
+                        
+                        // ReminderView()
+                        ReminderView(currentList: allLists[0])
                     })
                     .frame(maxWidth: .infinity, alignment: .leading)
                 } // end tool item
                 
-                
-            }
+            })
             .navigationTitle("My Lists")
         }
     }
@@ -112,8 +119,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
-
-// fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

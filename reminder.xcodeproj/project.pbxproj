@@ -71,11 +71,11 @@
 		374B34F92927EBB90013A29D /* reminder */ = {
 			isa = PBXGroup;
 			children = (
+				374B34FA2927EBB90013A29D /* reminderApp.swift */,
 				379F7DE92936AD7E00F2CC71 /* Listing+CoreDataClass.swift */,
 				379F7DEA2936AD7F00F2CC71 /* Listing+CoreDataProperties.swift */,
 				379F7DEB2936AD7F00F2CC71 /* Reminder+CoreDataClass.swift */,
 				379F7DEC2936AD7F00F2CC71 /* Reminder+CoreDataProperties.swift */,
-				374B34FA2927EBB90013A29D /* reminderApp.swift */,
 				37FA3FA5292D34BC00CAF687 /* Models */,
 				37BFDB50292BDF9F006E5CDF /* Views */,
 				374B35032927EBBA0013A29D /* Persistence.swift */,

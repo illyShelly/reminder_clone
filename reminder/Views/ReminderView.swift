@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ReminderView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -17,38 +18,36 @@ struct ReminderView: View {
     
     private var allLists: FetchedResults<Listing>
     
-    // if not added value "" - need to be in the preview as ReminderView(title: "hi")
-    @State var title: String = ""
-    @State var notes: String = ""
+    @State var currentList: Listing // passing list-1st instance & call in ContentView
     
-
+    @State var title: String = ""
+    @State var notes: String = "" // if not added value empty string "" -> needs to be in the preview as: ReminderView(title: "hi")
+    
     @FocusState private var titleFieldIsFocused: Bool
     @FocusState private var notesFieldIsFocused: Bool
     
     var body: some View {
-        NavigationView {
+        NavigationStack { // Change to Stack for choosing list, to be redirected
             VStack {
                 VStack {
-    //                    1st - Title
+//                  1st - Title
                     TextField(text: $title,
                               prompt: Text("Title")) {
                         Text(title)
                     }
+                              .focused($titleFieldIsFocused)
+                              .textInputAutocapitalization(.never)
+                              .disableAutocorrection(true)
+                    // .multilineTextAlignment(.leading)
+                              .keyboardType(.default)
+                              .frame(height: 50)
+                              .padding(.leading, 10)
                     
-                        .focused($titleFieldIsFocused)
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-    //                    .multilineTextAlignment(.leading)
-                        .keyboardType(.default)
-                        .frame(height: 50)
-                        .padding(.leading, 10)
+//                  Divider between textfields
+                    Divider().padding(.leading, 10)
                     
-    //                  Divider between textfields
-                        Divider().padding(.leading, 10)
-
 //                  2nd - Notes
                     TextField("Notes", text: $notes, prompt: Text("Notes"))
-                    
                         .focused($notesFieldIsFocused)
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
@@ -56,18 +55,31 @@ struct ReminderView: View {
                         .frame(height: 50)
                         .padding(.leading, 10)
                         .baselineOffset(4)
-//
                 } // VS - Textfields
                 .frame(height: 100) // for both fields (100+100)
                 .background(.white)
                 .cornerRadius(10)
-//              Push content above
+                
+//              Choose from lists
+                    List {
+                        NavigationLink {
+                            Text("\(allLists[0].wrappedName)")
+                            
+                        } label: { // on this page
+                            HStack {
+                                Text("List detail")
+                                Spacer()
+                                Text(currentList.wrappedName)
+                            }
+                        }
+                    }
+
+//              Push content above - if not List added
                 Spacer()
             }
             .padding(10) // whole box around
             .font(.callout)
 
-            
             .navigationTitle("New Reminder")
             .navigationBarTitleDisplayMode(.inline) //smalltext in the center
             
@@ -90,10 +102,30 @@ struct ReminderView: View {
             .background(Color.init(uiColor: .systemGray6))
         } // end Nav - not visible toolbar otherwise
     } // end view
+    
+    
+//    private func saveReminder() -> Void {
+//        let newList = Listing(context: viewContext)
+//            newList.name = nameOfList
+//            newList.icon = iconOfList
+//            newList.colorCode = selectedColor.hex
+//        print(selectedColor.hex) // to add as default into ContentView
+//
+//        do {
+//            try viewContext.save()
+//        }
+//        catch {
+//            let nsError = error as NSError
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//        }
+//    }
 }
 
 struct ReminderView_Previews: PreviewProvider {
     static var previews: some View {
-        ReminderView()
+        ReminderView(currentList: Listing.init(context: context))
+        .environment(\.managedObjectContext, context)
     }
 }
+// Cannot be used inside Preview of Reminder
+var context: NSManagedObjectContext = PersistenceController.shared.container.viewContext

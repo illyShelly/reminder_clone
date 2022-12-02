@@ -16,7 +16,7 @@ struct ColorIconView: View {
     var body: some View {
         Grid(horizontalSpacing: 0, verticalSpacing: 20) {
             GridRow {
-                ForEach(0..<colors.count/2) { idx in
+                ForEach(0..<colors.count/2, id: \.self) { idx in
                     Button(action: {
                         print("clicked \(colors[idx])")
                         selectedColor = colors[idx]
@@ -29,7 +29,8 @@ struct ColorIconView: View {
                 }
             }
             GridRow {
-                ForEach(colors.count/2..<colors.count) { idx in
+                // To get rid off message: Non-constant range: argument must be an integer literal -> use id: \.self
+                ForEach(colors.count/2..<colors.count, id: \.self) { idx in
                     Button(action: {
                         print("clicked \(colors[idx])")
                         selectedColor = colors[idx]

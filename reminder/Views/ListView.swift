@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ListView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -41,7 +42,7 @@ struct ListView: View {
                     .focused($nameIsFocused)
                     .disableAutocorrection(true)
 // .textFieldStyle(.roundedBorder) // makes another light layer - 'disable' .background modifier, makes it bigger
-                    .background(Color.init(uiColor: .systemGray4))
+                    .background(Color.init(uiColor: .systemGray5))
                     .multilineTextAlignment(.center)
                     .cornerRadius(5.0)
                     .font(.title2)
@@ -121,7 +122,7 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView()
+        ListView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
 
