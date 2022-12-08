@@ -30,57 +30,56 @@ struct ReminderView: View {
         NavigationStack { // Change to Stack for choosing list, to be redirected
             VStack {
                 VStack {
-//                  1st - Title
-                    TextField(text: $title,
-                              prompt: Text("Title")) {
-                        Text(title)
-                    }
-                              .focused($titleFieldIsFocused)
-                              .textInputAutocapitalization(.never)
-                              .disableAutocorrection(true)
-                    // .multilineTextAlignment(.leading)
-                              .keyboardType(.default)
-                              .frame(height: 50)
-                              .padding(.leading, 10)
-                    
-//                  Divider between textfields
-                    Divider().padding(.leading, 10)
-                    
-//                  2nd - Notes
-                    TextField("Notes", text: $notes, prompt: Text("Notes"))
-                        .focused($notesFieldIsFocused)
-                        .textInputAutocapitalization(.never)
-                        .disableAutocorrection(true)
-                        .keyboardType(.default)
-                        .frame(height: 50)
-                        .padding(.leading, 10)
-                        .baselineOffset(4)
-                } // VS - Textfields
-//                .frame(height: 100) // for both fields (100+100)
-                .background(.white)
-                .cornerRadius(10)
-                
-//              Choose from lists
-                List {
-                    NavigationLink {
-                        Text("\(allLists[0].wrappedName)")
-                        // Show all list to choose from
-                        // ...
-                        
-                    } label: { // on this page
-                        HStack {
-                            Text("Choose List")
-                            Spacer()
-                            Text(currentList.wrappedName)
+                    //                  1st - Title
+                    List {
+                        TextField(text: $title,
+                                  prompt: Text("Title")) {
+                            Text(title)
                         }
-                    }
+                          .focused($titleFieldIsFocused)
+                          .textInputAutocapitalization(.never)
+                          .disableAutocorrection(true)
+                        //.multilineTextAlignment(.leading)
+                          .keyboardType(.default)
+//                        .frame(height: 50)
+                        
+                        
+                        //                  2nd - Notes
+                        TextField("Notes", text: $notes, prompt: Text("Notes"))
+                            .focused($notesFieldIsFocused)
+                            .textInputAutocapitalization(.never)
+                            .disableAutocorrection(true)
+                            .keyboardType(.default)
+                            .frame(height: 50)
+                            .baselineOffset(4)
+                        
+                        // Choose from lists
+                        // To make space within a list -> Section
+                        Section {
+                            NavigationLink {
+                                Text("\(allLists[0].wrappedName)")
+                                // Show all list to choose from
+                                // ...
+                                
+                            } label: { // on this page
+                                HStack {
+                                    Text("Choose List")
+                                    Spacer()
+                                    Text(currentList.wrappedName)
+                                }
+                            }
+                        }
+                    } // end of list
+                    
                 }
-                 
-
-//              Push content above - if not List added
-                Spacer()
+                
+                // VS - Textfields
+                //.frame(height: 100) // for both fields (100+100)
+                // .background(.white)
+                // .cornerRadius(10)
             }
-            .padding(10) // whole box around
+//            .padding(10)
+            // whole box around - no need for TextFields in the List
             .font(.callout)
 
             .navigationTitle("New Reminder")
@@ -100,7 +99,9 @@ struct ReminderView: View {
                         saveReminder()
                         dismiss()
                     })
+                    .disabled(title == "" ? true : false)
                 }
+                
             } // toolbar is after 1st VS, nav - cannot be here
             .background(Color.init(uiColor: .systemGray6))
         } // end Nav - not visible toolbar otherwise

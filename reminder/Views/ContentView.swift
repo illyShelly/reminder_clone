@@ -28,24 +28,20 @@ struct ContentView: View {
                     
                     NavigationLink {
                         // When clicked on link -> the other screen content
-                        VStack {
+//                        VStack {
                             // print("\(allLists[0])") // cannot use
                             // let arrRemindersOfFirstList = allLists[0].remindersArr
                             // let value = (arrRemindersOfFirstList.first ?? Reminder(context: context)).title // need some default item
                             // Text(value ?? "default")
                             
-                            // Show all reminders related to current list
-//                            ForEach(list.remindersArr, id: \.self) { reminder in
-//                                    Text(reminder.wrappedTitle)
-//                            }
-                        }
+//                          Show all reminders related to current list
+                            ListDetail(mylist: list)
+//                        }
                     } label: {
                        // Visible on the main page - Icon & Name
                         HStack {
                             Image(systemName: "list.bullet.circle")
-                            // .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
                                 .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
-//                            Text(list.name!)
                             Text(list.wrappedName)
                             
                         }
