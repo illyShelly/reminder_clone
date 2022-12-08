@@ -16,8 +16,8 @@ struct ContentView: View {
                   animation: .default)
         private var allLists: FetchedResults<Listing>
 
-    @State private var showingList = false
-    @State private var showingReminder = false
+    @State private var showingList: Bool  = false
+    @State private var showingReminder: Bool = false
     
     var body: some View {
         NavigationView {
@@ -28,25 +28,19 @@ struct ContentView: View {
                     
                     NavigationLink {
                         // When clicked on link -> the other screen content
-                        HStack {
-//                            Text(list.wrappedName) // Text(list.name ?? "Unknown")
-                            
-//                            print("\(allLists[0])") // cannot use
-                            
-                            let arrOfRemindersOffirstList = allLists[0].remindersArr
-                            let value = (arrOfRemindersOffirstList.first ?? Reminder(context: context)).title // need some default item
-                            Text(value ?? "default")
-                            
+                        VStack {
+                            // print("\(allLists[0])") // cannot use
+                            // let arrRemindersOfFirstList = allLists[0].remindersArr
+                            // let value = (arrRemindersOfFirstList.first ?? Reminder(context: context)).title // need some default item
+                            // Text(value ?? "default")
                             
                             // Show all reminders related to current list
-                            ForEach(list.remindersArr, id: \.self) { reminder in
-                                List {
-                                    Text(reminder.wrappedTitle)
-                                }
-                            }
+//                            ForEach(list.remindersArr, id: \.self) { reminder in
+//                                    Text(reminder.wrappedTitle)
+//                            }
                         }
                     } label: {
-                        // Visible on the main page - Icon & Name
+                       // Visible on the main page - Icon & Name
                         HStack {
                             Image(systemName: "list.bullet.circle")
                             // .foregroundColor(Color.colorFromHex(list.colorCode ?? "#00C7BE"))
@@ -55,7 +49,6 @@ struct ContentView: View {
                             Text(list.wrappedName)
                             
                         }
-                        
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -64,14 +57,16 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) { //.bottomBar
                     Button(action: {
                         showingList.toggle()
-                        print(showingList)
+                        print("\(showingList) showing list toggle")
                         
                     }, label: {
                         Text("Add List")
                     })
-                    .sheet(isPresented: $showingList, // used to pass binding value
+                    .sheet(isPresented: $showingList,
+                           // used to pass binding value
                            content: {
-                        ListView()
+//                        ListView() // without binding in ListView
+                        ListView(showingList: $showingList)
                     })
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 } // end of ToolbarItem - List
@@ -88,12 +83,10 @@ struct ContentView: View {
                             Text("New Reminder")
                         }
                     })
-                    .sheet(isPresented: $showingReminder,
-                           content: {
-                        
+                    .sheet(isPresented: $showingReminder) {
                         // ReminderView()
                         ReminderView(currentList: allLists[0])
-                    })
+                    }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 } // end tool item
                 

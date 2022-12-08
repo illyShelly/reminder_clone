@@ -14,7 +14,10 @@ struct ListView: View {
 
     @FocusState private var nameIsFocused: Bool
     
-    @State var closedList = false
+//    Instead of using another variable to toggle modal -> bind from ContentView showingList
+//    @State var closedList = false
+    @Binding var showingList: Bool
+    
     @State private var nameOfList: String = ""
     
     @State var selectedColor: Color = .blue
@@ -82,18 +85,18 @@ struct ListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done", action: {
                         saveList() // create & save a new list
+//                        showingList = false
                         dismiss() // Close the modal
                         
-                        // With .sheet use this:
-//                       closedList = true
                     })
                     .disabled(nameOfList == "" ? true : false)
                     
                     // Redirect to Contentview with .sheet with above closedList = true
-                    .sheet(isPresented: $closedList,
-                           content: {
-                                ContentView()
-                    })
+//                    .sheet(isPresented: $closedList,
+//                           content: {
+//                                ContentView()
+//                    })
+//                    No need the .sheet when using Binding
                 }
             } // end of toolbar
             
@@ -104,6 +107,7 @@ struct ListView: View {
     
     private func saveList() -> Void {
         let newList = Listing(context: viewContext)
+            newList.id = UUID()
             newList.name = nameOfList
             newList.icon = iconOfList
             newList.colorCode = selectedColor.hex
@@ -122,7 +126,11 @@ struct ListView: View {
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
-        ListView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        //        ListView().environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+        
+        // For binding Bool showingList - need some param
+        ListView(showingList: .constant(true)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            
     }
 }
 

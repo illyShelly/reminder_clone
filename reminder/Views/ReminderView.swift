@@ -56,23 +56,26 @@ struct ReminderView: View {
                         .padding(.leading, 10)
                         .baselineOffset(4)
                 } // VS - Textfields
-                .frame(height: 100) // for both fields (100+100)
+//                .frame(height: 100) // for both fields (100+100)
                 .background(.white)
                 .cornerRadius(10)
                 
 //              Choose from lists
-                    List {
-                        NavigationLink {
-                            Text("\(allLists[0].wrappedName)")
-                            
-                        } label: { // on this page
-                            HStack {
-                                Text("List detail")
-                                Spacer()
-                                Text(currentList.wrappedName)
-                            }
+                List {
+                    NavigationLink {
+                        Text("\(allLists[0].wrappedName)")
+                        // Show all list to choose from
+                        // ...
+                        
+                    } label: { // on this page
+                        HStack {
+                            Text("Choose List")
+                            Spacer()
+                            Text(currentList.wrappedName)
                         }
                     }
+                }
+                 
 
 //              Push content above - if not List added
                 Spacer()
@@ -94,31 +97,38 @@ struct ReminderView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add", action: {
                         // Save the Reminder
+                        saveReminder()
                         dismiss()
                     })
                 }
-            }
-            // After toolbar - 1st VS has it under the TextFields, nav - cannot be
+            } // toolbar is after 1st VS, nav - cannot be here
             .background(Color.init(uiColor: .systemGray6))
         } // end Nav - not visible toolbar otherwise
     } // end view
     
-    
-//    private func saveReminder() -> Void {
-//        let newList = Listing(context: viewContext)
-//            newList.name = nameOfList
-//            newList.icon = iconOfList
-//            newList.colorCode = selectedColor.hex
-//        print(selectedColor.hex) // to add as default into ContentView
-//
-//        do {
-//            try viewContext.save()
-//        }
-//        catch {
-//            let nsError = error as NSError
-//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//        }
-//    }
+    private func saveReminder() -> Void {
+        let newReminder = Reminder(context: viewContext)
+        newReminder.id = UUID()
+        newReminder.title = title
+        newReminder.notes = notes
+        newReminder.origin = currentList // no need other atrributes
+//        newReminder.origin?.icon = currentList.icon
+        print("new reminder -----")
+        print(newReminder)
+        print("currentList -----")
+        print(currentList)
+        print("currentList name -----")
+        print(currentList.name!)
+        
+        do {
+            try viewContext.save()
+        }
+        catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+            
+    }
 }
 
 struct ReminderView_Previews: PreviewProvider {
