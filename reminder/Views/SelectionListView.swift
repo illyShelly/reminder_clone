@@ -19,34 +19,21 @@ struct SelectionListView: View {
     @Binding var currentList: Listing
         
     var body: some View {
-    //        Error: conforming to StringProtocol. In this case, even though the type conforms to CustomStringConvertible -> still passing a Listing. -> needs $0
-    
-    // currentList.name == "" ? defaultName : currentList.name!
-
+    // Error: conforming to StringProtocol. In this case, even though the type conforms to CustomStringConvertible -> still passing a Listing.
+    // Solution: remove 'list 'in' -> needs Text($0.wrappedName) -> to confirm String
+    // Error: Generic parameter 'Content' could not be inferred?? with List & Foreach & selection
+    // Solution without icon: ForEach(allLists, id: \.self) { Text($0.wrappedName)
+    // Solution: create another view to pass 'Icon' & 'Text of List's name''
 
 //        To see picker as List
         List {
             Picker("", selection: $currentList) {
-                ForEach(allLists, id: \.self) {
-                        Text($0.wrappedName)
-                }
+                ListRow()
             } .pickerStyle(.inline) // to see it as a list
         }
-            .navigationTitle("List")
-            .navigationBarTitleDisplayMode(.inline) //smalltext in the center
- 
+        .navigationTitle("List")
+        .navigationBarTitleDisplayMode(.inline) //smalltext in the center
 
-
-// Generic parameter 'Content' could not be inferred?? with List & Foreach & selection
-//        List {
-//            ForEach(allLists, id: \.self) { list in
-//                HStack {
-//                    Image(systemName: "list.bullet.circle")
-//                        .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
-//                    Text(list.wrappedName)
-//                }
-//            }
-//        }
     }
 
 }

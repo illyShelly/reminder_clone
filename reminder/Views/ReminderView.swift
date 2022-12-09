@@ -53,10 +53,12 @@ struct ReminderView: View {
                     Section {
                         // To choose from all lists
                         NavigationLink {
-                            Text("Reminder will be created in \(currentList.wrappedName)")
-                                .font(.callout)
+                            // How to make the white backgroud when click to pick the List
+                                Text("Reminder will be created in \(currentList.wrappedName)")
+                                    .font(.callout)
 
-                            SelectionListView(currentList: $currentList)
+                                SelectionListView(currentList: $currentList)
+                           
                         
                         } label: { // on this page
                             HStack {
