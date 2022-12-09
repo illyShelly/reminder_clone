@@ -108,8 +108,8 @@
 				37BFDB55292BE02E006E5CDF /* ListView.swift */,
 				379F7DF12936B52700F2CC71 /* ReminderView.swift */,
 				37F493AA2942ACEA000A2143 /* SelectionListView.swift */,
-				37FA3FA8292D660D00CAF687 /* ColorIconView.swift */,
 				37F493AE2943D50E000A2143 /* ListRow.swift */,
+				37FA3FA8292D660D00CAF687 /* ColorIconView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

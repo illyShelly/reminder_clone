@@ -18,28 +18,33 @@ struct ListDetail: View {
             // Show all reminders related to current list
             List { // not visible without populating the preview
                 ForEach(mylist.remindersArr, id: \.self) { reminder in
-                    Text(reminder.wrappedTitle)
+                    VStack(alignment: .leading) {
+                        Text(reminder.wrappedTitle)
+                        Text(reminder.wrappedNotes).font(.caption)
+                    }
                 }
-//                .onDelete(perform: deleteReminders) // on foreach, not call on List
+                .onDelete(perform: deleteReminders) // on foreach, not call on List
             }
         }
         .navigationTitle("\(mylist.wrappedName)")
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    //    func deleteReminders(at offset: IndexSet) -> Void {
-//    func deleteReminders(offsets: IndexSet) {
-//        //        viewContext.delete(mylist.remindersArr[offset.last!]) // core data has delete - deletes all
-//        //        offsets.map { mylist.remindersArr[$0] }.forEach(viewContext.delete) // not working - is not mutable
-//        //        mylist.remindersArr.remove(atOffsets: offset)
-//        
-//        do {
-//            try viewContext.save()
-//        } catch {
-//            let nsError = error as NSError
-//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//        }
-//    }
+//        func deleteReminders(at offset: IndexSet) -> Void {
+    func deleteReminders(offsets: IndexSet) {
+        //  viewContext.delete(mylist.remindersArr[offset.last!]) // core data has 'delete' - deletes all
+        // mylist.remindersArr.remove(atOffsets: offset)
+        
+        // removes also list itself :(
+        offsets.map { mylist.remindersArr[$0] }.forEach(viewContext.delete) // not working - is not mutable
+
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
     
 }
 //struct ListDetail_Previews: PreviewProvider {
