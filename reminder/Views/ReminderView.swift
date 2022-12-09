@@ -26,12 +26,16 @@ struct ReminderView: View {
     @FocusState private var titleFieldIsFocused: Bool
     @FocusState private var notesFieldIsFocused: Bool
     
+    
+//    @State var pickedList: Listing
+    
+    
     var body: some View {
         NavigationStack { // Change to Stack for choosing list, to be redirected
             VStack {
                 VStack {
-                    //                  1st - Title
                     List {
+    //                  1st - Title
                         TextField(text: $title,
                                   prompt: Text("Title")) {
                             Text(title)
@@ -39,12 +43,9 @@ struct ReminderView: View {
                           .focused($titleFieldIsFocused)
                           .textInputAutocapitalization(.never)
                           .disableAutocorrection(true)
-                        //.multilineTextAlignment(.leading)
                           .keyboardType(.default)
-//                        .frame(height: 50)
                         
-                        
-                        //                  2nd - Notes
+    //                  2nd - Notes
                         TextField("Notes", text: $notes, prompt: Text("Notes"))
                             .focused($notesFieldIsFocused)
                             .textInputAutocapitalization(.never)
@@ -53,14 +54,25 @@ struct ReminderView: View {
                             .frame(height: 50)
                             .baselineOffset(4)
                         
-                        // Choose from lists
-                        // To make space within a list -> Section
+                        // To make space between lists use 'Section'
                         Section {
+                            // To choose from all lists
                             NavigationLink {
-                                Text("\(allLists[0].wrappedName)")
-                                // Show all list to choose from
-                                // ...
+                              Text("\(allLists[0].wrappedName)")
                                 
+                                SelectionListView()
+//                            SelectionListView(pickedList: allLists[0])
+//                                List {
+//                                    ForEach(allLists, id: \.self) { list in
+//                                        HStack {
+//                                            Image(systemName: "list.bullet.circle")
+//                                                .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
+//                                            Text(list.wrappedName)
+//                                        }
+//                                    }
+//
+//                                }
+                            
                             } label: { // on this page
                                 HStack {
                                     Text("Choose List")
@@ -69,18 +81,17 @@ struct ReminderView: View {
                                 }
                             }
                         }
+                        
                     } // end of list
+                    // .listStyle(.insetGrouped)
                     
                 }
-                
                 // VS - Textfields
                 //.frame(height: 100) // for both fields (100+100)
                 // .background(.white)
                 // .cornerRadius(10)
             }
-//            .padding(10)
-            // whole box around - no need for TextFields in the List
-            .font(.callout)
+//            .font(.callout)
 
             .navigationTitle("New Reminder")
             .navigationBarTitleDisplayMode(.inline) //smalltext in the center
@@ -113,7 +124,7 @@ struct ReminderView: View {
         newReminder.title = title
         newReminder.notes = notes
         newReminder.origin = currentList // no need other atrributes
-//        newReminder.origin?.icon = currentList.icon
+        // newReminder.origin?.icon = currentList.icon
         print("new reminder -----")
         print(newReminder)
         print("currentList -----")

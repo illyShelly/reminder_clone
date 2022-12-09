@@ -23,22 +23,15 @@ struct ContentView: View {
         NavigationView {
             
             List {
-                // In preview iterate with index -> need 'id' to show increased number in view 
                 ForEach(allLists, id: \.self) { list in
-                    
+                    // When clicked on -> the other screen content
                     NavigationLink {
-                        // When clicked on link -> the other screen content
-//                        VStack {
-                            // print("\(allLists[0])") // cannot use
-                            // let arrRemindersOfFirstList = allLists[0].remindersArr
-                            // let value = (arrRemindersOfFirstList.first ?? Reminder(context: context)).title // need some default item
-                            // Text(value ?? "default")
-                            
-//                          Show all reminders related to current list
-                            ListDetail(mylist: list)
-//                        }
+                        
+                        ListDetail(mylist: list)  // Show all reminders related to clicked list, passing its data into ListDetail View
+
+                        
                     } label: {
-                       // Visible on the main page - Icon & Name
+                    // Icon & Name - visible on the main page
                         HStack {
                             Image(systemName: "list.bullet.circle")
                                 .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
@@ -49,7 +42,8 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
                 
-            }.toolbar(content: {
+            }
+            .toolbar(content: {
                 ToolbarItem(placement: .navigationBarTrailing) { //.bottomBar
                     Button(action: {
                         showingList.toggle()
@@ -81,6 +75,7 @@ struct ContentView: View {
                     })
                     .sheet(isPresented: $showingReminder) {
                         // ReminderView()
+
                         ReminderView(currentList: allLists[0])
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -112,3 +107,11 @@ struct ContentView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
     }
 }
+
+//NavigationLink {
+    // When clicked on link -> the other screen content
+// VStack {
+    // print("\(allLists[0])") // cannot use
+    // let arrRemindersOfFirstList = allLists[0].remindersArr
+    // let value = (arrRemindersOfFirstList.first ?? Reminder(context: context)).title // need some default item
+    // Text(value ?? "default")
