@@ -29,72 +29,52 @@ struct ReminderView: View {
     var body: some View {
         NavigationStack { // Change to Stack for choosing list, to be redirected
             VStack {
-                VStack {
-                    List {
-    //                  1st - Title
-                        TextField(text: $title,
-                                  prompt: Text("Title")) {
-                            Text(title)
-                        }
-                          .focused($titleFieldIsFocused)
-                          .textInputAutocapitalization(.never)
-                          .disableAutocorrection(true)
-                          .keyboardType(.default)
+                List {
+//                  1st - Title
+                    TextField(text: $title,
+                              prompt: Text("Title")) {
+                        Text(title)
+                    }
+                      .focused($titleFieldIsFocused)
+                      .textInputAutocapitalization(.never)
+                      .disableAutocorrection(true)
+                      .keyboardType(.default)
+                    
+//                  2nd - Notes
+                    TextField("Notes", text: $notes, prompt: Text("Notes"))
+                        .focused($notesFieldIsFocused)
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
+                        .keyboardType(.default)
+                        .frame(height: 50)
+                        .baselineOffset(4)
+                    
+                    // To make space between lists use 'Section'
+                    Section {
+                        // To choose from all lists
+                        NavigationLink {
+                            Text("Reminder will be created in \(currentList.wrappedName)")
+                                .font(.callout)
+
+                            SelectionListView(currentList: $currentList)
                         
-    //                  2nd - Notes
-                        TextField("Notes", text: $notes, prompt: Text("Notes"))
-                            .focused($notesFieldIsFocused)
-                            .textInputAutocapitalization(.never)
-                            .disableAutocorrection(true)
-                            .keyboardType(.default)
-                            .frame(height: 50)
-                            .baselineOffset(4)
-                        
-                        // To make space between lists use 'Section'
-                        Section {
-                            // To choose from all lists
-                            NavigationLink {
-//                              Text("\(allLists[0].wrappedName)")
-                                
-                                SelectionListView(currentList: $currentList)
-//                            SelectionListView(pickedList: allLists[0])
-//                                List {
-//                                    ForEach(allLists, id: \.self) { list in
-//                                        HStack {
-//                                            Image(systemName: "list.bullet.circle")
-//                                                .foregroundColor(Color.colorFromHex(list.wrappedColorCode))
-//                                            Text(list.wrappedName)
-//                                        }
-//                                    }
-//
-//                                }
-                            
-                            } label: { // on this page
-                                HStack {
-                                    Text("Choose List")
-                                    Spacer()
-                                    Text(currentList.wrappedName)
-//                                    if (pickedList.wrappedName != "") {
-//                                        Text(pickedList.wrappedName)
-//                                    } else {
-//                                        Text(currentList.wrappedName)
-//
-//                                    }
-                                   
-                                }
+                        } label: { // on this page
+                            HStack {
+                                Text("Choose List")
+                                Spacer()
+                                Text(currentList.wrappedName)
                             }
                         }
-                        
-                    } // end of list
-                    // .listStyle(.insetGrouped)
+                    }
                     
-                }
-                // VS - Textfields
-                //.frame(height: 100) // for both fields (100+100)
-                // .background(.white)
-                // .cornerRadius(10)
+                } // end of list
+                // .listStyle(.insetGrouped)
+                
             }
-//            .font(.callout)
+            // VS - Textfields
+            //.frame(height: 100) // for both fields (100+100)
+            // .background(.white)
+
 
             .navigationTitle("New Reminder")
             .navigationBarTitleDisplayMode(.inline) //smalltext in the center
