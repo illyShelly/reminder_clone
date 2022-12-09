@@ -25,11 +25,7 @@ struct ReminderView: View {
     
     @FocusState private var titleFieldIsFocused: Bool
     @FocusState private var notesFieldIsFocused: Bool
-    
-    
-//    @State var pickedList: Listing
-    
-    
+            
     var body: some View {
         NavigationStack { // Change to Stack for choosing list, to be redirected
             VStack {
@@ -58,9 +54,9 @@ struct ReminderView: View {
                         Section {
                             // To choose from all lists
                             NavigationLink {
-                              Text("\(allLists[0].wrappedName)")
+//                              Text("\(allLists[0].wrappedName)")
                                 
-                                SelectionListView()
+                                SelectionListView(currentList: $currentList)
 //                            SelectionListView(pickedList: allLists[0])
 //                                List {
 //                                    ForEach(allLists, id: \.self) { list in
@@ -78,6 +74,13 @@ struct ReminderView: View {
                                     Text("Choose List")
                                     Spacer()
                                     Text(currentList.wrappedName)
+//                                    if (pickedList.wrappedName != "") {
+//                                        Text(pickedList.wrappedName)
+//                                    } else {
+//                                        Text(currentList.wrappedName)
+//
+//                                    }
+                                   
                                 }
                             }
                         }

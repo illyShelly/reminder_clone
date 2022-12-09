@@ -16,7 +16,7 @@ struct SelectionListView: View {
                   animation: .default) private var allLists: FetchedResults<Listing>
     
     
-    @State var pickedList: Listing = Listing()
+    @Binding var currentList: Listing
     
     var body: some View {
     // Permanent error -> Generic parameter 'Content' could not be inferred...
@@ -25,11 +25,12 @@ struct SelectionListView: View {
         //   }
             
 //        Error: conforming to StringProtocol. In this case, even though the type conforms to CustomStringConvertible -> still passing a Listing.
-            Picker("Select List", selection: $pickedList) {
+            Picker("Select List", selection: $currentList) {
                 ForEach(allLists, id: \.self) {
                     Text($0.wrappedName)
                 }
             } .pickerStyle(.wheel)
+    
             
             
 //            List {
@@ -47,7 +48,7 @@ struct SelectionListView: View {
 
 struct SelectionListView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectionListView()
+        SelectionListView(currentList: .constant(Listing()))
     }
 }
 

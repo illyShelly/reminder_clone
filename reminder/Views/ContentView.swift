@@ -89,7 +89,12 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { allLists[$0] }.forEach(viewContext.delete)
+//            Another way to iterate
+            for index in offsets {
+                let list = allLists[index]
+                viewContext.delete(list)
+            }
+            // offsets.map { allLists[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -97,6 +102,7 @@ struct ContentView: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+            
         }
     }
 }
