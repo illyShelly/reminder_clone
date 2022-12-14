@@ -110,11 +110,11 @@ struct ReminderView: View {
         newReminder.notes = notes
         newReminder.origin = currentList // no need other atrributes
         // newReminder.origin?.icon = currentList.icon
-        print("new reminder -----")
+        print("****** NEW REMINDER -----")
         print(newReminder)
-        print("currentList -----")
+        print("****** CURRENTLIST -----")
         print(currentList)
-        print("currentList name -----")
+        print("---> currentList name:")
         print(currentList.name!)
         
         do {
