@@ -12,10 +12,10 @@ struct ReminderView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     
-    @FetchRequest(entity: Listing.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
-                  animation: .default)
-    
+    @FetchRequest(
+        entity: Listing.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
+        animation: .default)
     private var allLists: FetchedResults<Listing>
     
     @State var currentList: Listing // passing list-1st instance & call in ContentView

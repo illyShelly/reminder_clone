@@ -11,20 +11,16 @@ struct SelectionListView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: Listing.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
-                  animation: .default) private var allLists: FetchedResults<Listing>
+    @FetchRequest(
+        entity: Listing.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
+        animation: .default)
+    private var allLists: FetchedResults<Listing>
     
     
     @Binding var currentList: Listing
         
     var body: some View {
-    // Error: conforming to StringProtocol. In this case, even though the type conforms to CustomStringConvertible -> still passing a Listing.
-    // Solution: remove 'list 'in' -> needs Text($0.wrappedName) -> to confirm String
-    // Error: Generic parameter 'Content' could not be inferred?? with List & Foreach & selection
-    // Solution without icon: ForEach(allLists, id: \.self) { Text($0.wrappedName)
-    // Solution: create another view to pass 'Icon' & 'Text of List's name''
-
 //        To see picker as List
         List {
             Picker("", selection: $currentList) {
@@ -44,6 +40,13 @@ struct SelectionListView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
+
+
+// Error: conforming to StringProtocol. In this case, even though the type conforms to CustomStringConvertible -> still passing a Listing.
+// Solution: remove 'list 'in' -> needs Text($0.wrappedName) -> to confirm String
+// Error: Generic parameter 'Content' could not be inferred?? with List & Foreach & selection
+// Solution without icon: ForEach(allLists, id: \.self) { Text($0.wrappedName)
+// Solution: create another view to pass 'Icon' & 'Text of List's name''
 
 // To have visible code -> needs in Preview .environment(\.managedObjectContext, context)
 // And populate the list :)

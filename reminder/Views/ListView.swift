@@ -84,7 +84,7 @@ struct ListView: View {
                 // Done button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done", action: {
-                        saveList() // create & save a new list
+                        createList() // create & save a new list
 //                        showingList = false
                         dismiss() // Close the modal
                         
@@ -105,14 +105,20 @@ struct ListView: View {
        
     }
     
-    private func saveList() -> Void {
+    private func createList() -> Void {
+// Create entity 'List' and add it into 'viewContext' used as the Environment Object
         let newList = Listing(context: viewContext)
             newList.id = UUID()
             newList.name = nameOfList
             newList.icon = iconOfList
             newList.colorCode = selectedColor.hex
         print(selectedColor.hex) // to add as default into ContentView
-                                    
+        
+        saveList()
+        
+    }
+    
+    private func saveList() -> Void {
         do {
             try viewContext.save()
         }

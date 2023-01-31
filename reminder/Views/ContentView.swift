@@ -11,9 +11,10 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(entity: Listing.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
-                  animation: .default)
+    @FetchRequest(
+        entity: Listing.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Listing.name, ascending: true)],
+        animation: .default)
         private var allLists: FetchedResults<Listing>
 
     @State private var showingList: Bool  = false
